@@ -6,20 +6,17 @@
 > Desafio para a vaga de Front-end na Agrotis 
 
 ## :page_with_curl: Como Usar
-- **Clone o repositório** `gt clone https://github.com/pablomagalhaes/form-agrotis`
+- **Clone o repositório** `git clone https://github.com/pablomagalhaes/form-agrotis`
     
-- **Front-end** 
-    - ```yarn```
-    - ```npm start``` `
+  - ```yarn```
+  - ```npm start```
 
 # Tecnologias utilizadas
 - React
-- html / css 
 - Style-conponents
 - Material-UI
 - React Hook form
-
-# Resultado do formulario
+# Resultado do formulário
 ```
 {
     
