@@ -1,0 +1,14 @@
+*{ box-sizing:border-box; -webkit-font-smoothing:antialiased;  scroll-behavior: smooth; }
+
+.App {
+  padding:0 0 20px;
+  min-height:100vh;
+  background-color:#F3F2F1;
+}
+
+p.Mui-error::before{ 
+  display:inline-flex;
+  content:'\26A0';  
+  font-size: 16px;
+  margin-right:5px;
+}

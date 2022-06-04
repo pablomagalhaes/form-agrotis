@@ -1,0 +1,99 @@
+.MuiInputBase-input{
+  font-size: 1.8rem;
+}
+
+.container{
+  background:var(--white);
+  padding:0 0 20px;
+  max-width:1160px;
+  width:95%;
+  margin:0 auto;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.26);
+  overflow: hidden;
+  position: relative;
+}
+.boxBlock{
+  position:absolute;
+  inset: 0;
+  z-index: 10;
+  display:none;
+  gap:20px;
+  align-items: center;
+  justify-content: center;
+  background:var(--black-100);
+  font-size:24px;
+  color:var(--black-200);
+  text-decoration: none;
+  font-weight: bold;
+}
+.boxBlock.active{
+  display:flex;
+}
+.boxBlock.active small{
+  display:block;
+  font-size:15px;
+  font-weight:500;
+}
+
+.boxBlock svg,
+.boxBlock svg path{
+  fill:currentColor;
+}
+
+.container header{
+  background:var(--prim-800);
+  color:var(--white);
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  height:55px;
+  padding:0 20px;
+  margin-bottom:20px
+}
+.container header h3{
+  font-size:20px;
+  font-weight:500;
+}
+.container header input{
+  display:flex;
+  align-items: center;
+  height:35px;
+  font-size:14px;
+  font-weight:bold;
+  text-transform:uppercase;
+  color:var(--white);
+  background:var(--prim-700);
+  padding:0 15px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.26);
+  border-radius: 2px;
+  border:0px;
+  cursor:pointer;
+}
+
+.linha{
+  display:grid;
+  gap:15px;
+  padding:10px 20px;
+}
+.linha1{
+  grid-template-columns:1fr 1fr 1fr;
+}
+.linha2{
+  grid-template-columns:1fr 1fr;
+}
+
+.ItemSelect{
+  width:100%;
+  padding:10px 0;
+}
+.ItemSelect h3{
+  margin:0px
+}
+
+@media(max-width:768px){
+  .linha1,
+  .linha2{
+    grid-template-columns: 1fr;
+  }
+
+}
