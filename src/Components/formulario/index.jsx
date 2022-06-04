@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { MenuItem, TextField } from '@material-ui/core'
+import { makeStyles } from "@material-ui/core/styles";
 
-import { Container, Header, HeaderTitle, HeaderButton, Row1, Row2, Row3, FormContainer, ResetImage} from './styles';
+import { 
+  Container, 
+  Header, 
+  HeaderTitle,
+  HeaderButton, 
+  Row1, 
+  Row2, 
+  Row3, 
+  FormContainer, 
+  ResetImage,
+  ItemSelect,
+} from './styles';
 
-import resetImage from '../../assets/images/resetIcon.svg';
+import resetImg from '../../assets/images/resetIcon.svg';
 
 import  Alerts  from '../Alerts'
-import styles from './formulario.module.css'
 
 const propriedade = [
   {
@@ -63,7 +74,14 @@ const laboratorio = [
   },
 ]
 
+const useStyles = makeStyles((theme) => ({
+  helperText: {
+    textAlign: "right"
+  }
+}));
+
 export default function Formulario(){
+  const classes = useStyles();
 
   const [Showreset, setShowreset] = useState(false);
 
@@ -83,12 +101,10 @@ export default function Formulario(){
     setValuesLab(event.target.value);
   };
 
-
-  //#region : EXIBI OS DADOS NO CONSOLE
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
+
   const onSubmit = data => {
     const { nome, dataInicio, dataFinal, selectPropriedade, selectLaboratorio, observacao } = data
-
     setAlertMsg({ msg: "Cadastro realizado com sucesso!", tipo: "success" })
 
     console.log(
@@ -108,7 +124,6 @@ export default function Formulario(){
         observacoes: observacao
       }
     )
-    resetForm()
     setShowreset(true)
   }
  
@@ -128,24 +143,20 @@ export default function Formulario(){
       nome:'',
       dataInicio:'',
       dataFinal:'',
-      selectPropriedade: "",
-      selectLaboratorio: "",
-      observacao:''
+      selectPropriedade:'',
+      selectLaboratorio:'',
+      observacao:'',
     })
     setNomeletter(0)
     setObsletter(0)
     setShowreset(false);
-
     setTimeout(() => {
       setAlertMsg({ msg: '', tipo: '' })
     }, 3000)
   }
-  //#endregion
 
-  //#region : CONTAR CARACTERES
   const handleLetterNome = e => setNomeletter(e.target.value.length)
   const handleLetterObs = e => setObsletter(e.target.value.length)
-  //#endregion
 
   return (
     <>
@@ -191,7 +202,6 @@ export default function Formulario(){
                       shrink: true,
                       }}
                     />
-                  
                   </Row1>
             
                   <Row2>
@@ -208,16 +218,16 @@ export default function Formulario(){
                       error={errors.selectPropriedade}
                       helperText={errors.selectPropriedade ? errors.selectPropriedade && "Error" : cnpjProp ? "CNPJ: "+ cnpjProp : ""}
                       >
-                        {propriedade.map(item => (
+                        {propriedade?.map(item => (
                           <MenuItem key={item.id} value={item}>
-                            <div className={styles.ItemSelect} onClick={() => setCnpjProp(item.cnpj)}>
+                            <ItemSelect onClick={() => setCnpjProp(item.cnpj)}>
                               <h3>{item.nome}</h3>
                               <small>{item.cnpj}</small>
-                            </div>
+                            </ItemSelect>
+                          
                           </MenuItem>
                         ))}
                     </TextField>
-                          
                     <TextField 
                       id="laboratorioSelect"
                       select 
@@ -249,7 +259,10 @@ export default function Formulario(){
                       minRows={7}
                       maxRows={10}
                       {...register("observacao")} 
-                      error={errors.observacao}  
+                      error={errors.observacao}
+                      FormHelperTextProps={{
+                        className: classes.helperText
+                      }}
                       helperText={ errors.observacao ? errors.observacao && "Error" : obsletter + "/1000" } 
                       />
                   </Row3>  
@@ -257,11 +270,11 @@ export default function Formulario(){
           </form>
       </Container>
         <FormContainer>
-          {Showreset &&
-            <ResetImage
-              src={resetImage}
-              onClick={() => resetForm()}
-          />}
+            {Showreset &&
+              <ResetImage
+                src={resetImg}
+                onClick={resetForm}
+            />}
         </FormContainer>    
     </>
   )
